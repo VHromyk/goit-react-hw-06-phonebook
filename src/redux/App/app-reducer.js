@@ -1,6 +1,5 @@
-import { createStore, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 import appActions from './app-actions';
 
 const itemsInitionalState = [
@@ -12,12 +11,6 @@ const itemsInitionalState = [
 
 // const addContact = createAction(types.ADD_CONTACT);
 // const deleteContact = createAction(types.DELETE_CONTACT);
-
-const items = createReducer(itemsInitionalState, {
-  [appActions.addContact]: (state, action) => [action.payload, ...state],
-  [appActions.deleteContact]: (state, action) =>
-    state.filter(item => item.id !== action.payload),
-});
 
 // const items = (state = itemsInitionalState, { type, payload }) => {
 //   switch (type) {
@@ -32,10 +25,6 @@ const items = createReducer(itemsInitionalState, {
 //   }
 // };
 
-const filter = createReducer('', {
-  [appActions.changeFilter]: (_, action) => action.payload,
-});
-
 // const filter = (state = '', { type, payload }) => {
 //   switch (type) {
 //     case types.CHANGE_FILTER:
@@ -44,6 +33,16 @@ const filter = createReducer('', {
 
 //   return state;
 // };
+
+const items = createReducer(itemsInitionalState, {
+  [appActions.addContact]: (state, action) => [action.payload, ...state],
+  [appActions.deleteContact]: (state, action) =>
+    state.filter(item => item.id !== action.payload),
+});
+
+const filter = createReducer('', {
+  [appActions.changeFilter]: (_, action) => action.payload,
+});
 
 export default combineReducers({
   items,

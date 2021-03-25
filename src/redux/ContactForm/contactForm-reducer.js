@@ -1,6 +1,5 @@
-import { createStore, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { createReducer, createAction } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 import submitActions from './contactForm-actions';
 
 const name = createReducer('', {
